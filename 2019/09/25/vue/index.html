@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="zhang">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="vue-cli快速创建vue程序">
+  <meta property="og:description" content>
+  <meta property="og:site_name" content="zhang">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="zhang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>zhang</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/zhangblog/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/zhangblog/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/zhangblog//img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">vue-cli快速创建vue程序</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/zhangblog/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/zhangblog/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By zhang</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-09-25</span>
+            <span class="time">17:01:26</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <hr>
+<h2 id="vue-cli快速创建vue程序"><a href="#vue-cli快速创建vue程序" class="headerlink" title=" vue-cli快速创建vue程序"></a> vue-cli快速创建vue程序</h2><p>作为前端三大框架之一的Vue.js目前越来越火，情势所逼，作为后端开发也不得不了解一下，本文介绍利用vue-cli搭建vue程序，</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="1-安装node-js"><a href="#1-安装node-js" class="headerlink" title="1.安装node.js"></a>1.安装node.js</h3><p>下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a><br>安装完成后验证一下</p>
+<img src="/zhangblog/2019/09/25/vue/1.png" title="test">
+
+
+
+<h3 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install vue-cli -g</span><br><span class="line">//检查一下</span><br><span class="line">$ vue -V</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建vue项目"><a href="#创建vue项目" class="headerlink" title="创建vue项目"></a>创建vue项目</h3><p>webpack是一个打包工具<br>详细请了解：<a href="https://www.webpackjs.com/concepts/" target="_blank" rel="noopener">https://www.webpackjs.com/concepts/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vue init webpack demo</span><br></pre></td></tr></table></figure>
+
+<p>输入命令后，会询问我们几个选项，我们根据自己的需要进行填写就可以了（可以不用管一路回车）。<br>Project name :项目名称<br>Project description:项目描述。<br>Author：作者，如果你有配置git的作者，他会读取。<br>Install vue-router? 是否安装vue的路由插件，我们这里需要安装，所以选择Y<br>Use ESLint to lint your code? 是否用ESLint来限制你的代码错误和风格。<br>setup unit tests with Karma + Mocha? 是否需要安装单元测试工具Karma+Mocha。<br>Setup e2e tests with Nightwatch? 是否安装e2e来进行用户行为模拟测试。</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>创建完成后项目结构</p>
+<img src="/zhangblog/2019/09/25/vue/2.png" title="test">
+<p>src目录</p>
+<img src="/zhangblog/2019/09/25/vue/3.png" title="test">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><p>默认端口号8080</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm start （vsCode默认配置）或者 npm run dev</span><br></pre></td></tr></table></figure>
+
+<img src="/zhangblog/2019/09/25/vue/4.png" title="test">
+
+<h3 id="打包项目"><a href="#打包项目" class="headerlink" title="打包项目"></a>打包项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm start （vsCode默认配置）或者 npm run build</span><br></pre></td></tr></table></figure>
+
+<p>打包后生成dist文件夹</p>
+<h3 id="部署到nginx"><a href="#部署到nginx" class="headerlink" title="部署到nginx"></a>部署到nginx</h3><p>下载nginx：<a href="https://nginx.org/en/download.html" target="_blank" rel="noopener">https://nginx.org/en/download.html</a><br>1.打开nginx下载目录找到conf下nginx.conf文件<br>2.打开nginx.conf文件修改以下代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">          root   path;// 路径</span><br><span class="line">          index  index.html index.htm;</span><br><span class="line">          try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ @router;//这里注意@router一定要写，不然vue的路由会出问题</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/zhangblog/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
