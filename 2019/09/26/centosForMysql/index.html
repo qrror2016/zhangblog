@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="zhang">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="centos7安装mysql">
+  <meta property="og:description" content>
+  <meta property="og:site_name" content="zhang">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="zhang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>zhang</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/zhangblog/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/zhangblog/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/zhangblog//img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">centos7安装mysql</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/zhangblog/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/zhangblog/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By zhang</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-09-26</span>
+            <span class="time">17:58:42</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h3 id="1-去官网找对应的mysql版本"><a href="#1-去官网找对应的mysql版本" class="headerlink" title="1.去官网找对应的mysql版本"></a>1.去官网找对应的mysql版本</h3><p><a href="https://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/repo/yum/</a><br>找到之后复制上面的链接</p>
+<h3 id="2-安装yum源"><a href="#2-安装yum源" class="headerlink" title="2.安装yum源"></a>2.安装yum源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -i -c http://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">yum localinstall mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-检查是否安装成功"><a href="#3-检查是否安装成功" class="headerlink" title="3.检查是否安装成功"></a>3.检查是否安装成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum search mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-安装mysql"><a href="#4-安装mysql" class="headerlink" title="4.安装mysql"></a>4.安装mysql</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql-community-server.x86_64</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-检查是否安装成功"><a href="#5-检查是否安装成功" class="headerlink" title="5.检查是否安装成功"></a>5.检查是否安装成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//查看所在目录</span><br><span class="line">whereis mysql</span><br><span class="line">//显示mysql进程</span><br><span class="line">ps -ef | grep mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-mysql服务命令"><a href="#6-mysql服务命令" class="headerlink" title="6.mysql服务命令"></a>6.mysql服务命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//启动</span><br><span class="line">service mysqld start</span><br><span class="line">//重启</span><br><span class="line">service mysqld restart</span><br><span class="line">//停止</span><br><span class="line">service mysqld stop</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-登录MySQL"><a href="#7-登录MySQL" class="headerlink" title="7.登录MySQL"></a>7.登录MySQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//查看默认密码</span><br><span class="line">cat /var/<span class="built_in">log</span>/mysqld.log | grep password</span><br><span class="line">//登录</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-修改密码"><a href="#8-修改密码" class="headerlink" title="8.修改密码"></a>8.修改密码</h3><p>如果不修改默认密码进行操作的话会报错<br>“ ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement. “</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//注意默认密码格式不然修改失败</span><br><span class="line">alter user <span class="string">'root'</span>@<span class="string">'localhost'</span> identified by <span class="string">'newpwd***'</span>;</span><br><span class="line">//使密码过期</span><br><span class="line">ALTER USER testuser IDENTIFIED BY <span class="string">'123456'</span> PASSWORD EXPIRE;</span><br><span class="line">//使密码从不过期</span><br><span class="line">ALTER USER testuser IDENTIFIED BY <span class="string">'123456'</span> PASSWORD EXPIRE NEVER;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-修改成功后刷新一下"><a href="#9-修改成功后刷新一下" class="headerlink" title="9.修改成功后刷新一下"></a>9.修改成功后刷新一下</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-开启mysql-root用户的远程连接"><a href="#10-开启mysql-root用户的远程连接" class="headerlink" title="10.开启mysql root用户的远程连接"></a>10.开启mysql root用户的远程连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//进入mysql数据库</span><br><span class="line"> use mysql; </span><br><span class="line">//更新root用户的host</span><br><span class="line"> update user <span class="built_in">set</span> host = <span class="string">'%'</span> <span class="built_in">where</span> user = <span class="string">'root'</span>;</span><br><span class="line">//查看修改结果</span><br><span class="line"> select host, user from user;</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-打开navicat验证一下"><a href="#11-打开navicat验证一下" class="headerlink" title="11.打开navicat验证一下"></a>11.打开navicat验证一下</h3><img src="/zhangblog/2019/09/26/centosForMysql/1.png" title="test">
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/zhangblog/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
