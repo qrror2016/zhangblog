@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="zhang">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="SqlServer几种分页方式">
+  <meta property="og:description" content>
+  <meta property="og:site_name" content="zhang">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="zhang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>zhang</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/zhangblog/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/zhangblog/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/zhangblog//img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">SqlServer几种分页方式</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/zhangblog/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/zhangblog/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By zhang</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-09-25</span>
+            <span class="time">11:01:49</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h3 id="第一种方式top-not-in"><a href="#第一种方式top-not-in" class="headerlink" title="第一种方式top not in"></a>第一种方式top not in</h3><p>这种方式最简单，在数据量小的情况下可以使用<br>数据量一旦过大 这种方式将非常耗时<br>适用于老版本sqlserver</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select top 10 * from table a </span><br><span class="line">               <span class="built_in">where</span>  a.id not <span class="keyword">in</span> (select top((@pageIndex-1) * @pageSize) id from table b order by b.id)</span><br><span class="line">               order by a.id</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种方式-ROW-NUMBER-OVER"><a href="#第二种方式-ROW-NUMBER-OVER" class="headerlink" title="第二种方式 ROW_NUMBER() OVER()"></a>第二种方式 ROW_NUMBER() OVER()</h3><p>这种分页方式需要sql2005以上的版本<br>ROW_NUMBER OVER按照特定方式进行排序后编号 相较于第一种not in方式性能稍好一些</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from </span><br><span class="line">         (select ROW_NUMBER() OVER(order by id) as inx, * from table) a</span><br><span class="line">          <span class="built_in">where</span> a.inx between (@pageIndex-1)*@pageSize and (@pageIndex*@pageSize)</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三种方式-offset-fetch-next-（推荐）"><a href="#第三种方式-offset-fetch-next-（推荐）" class="headerlink" title="第三种方式 offset fetch next （推荐）"></a>第三种方式 offset fetch next （推荐）</h3><p>需要sqlserver2012及以上版本才能使用<br>offset 跳过多少行<br>next 显示多少行<br>相较于其他两个分页这个更简洁性能更好</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table a order by a.id offset (@pageIndex-1)*@pageSize rows fetch next @pageSize rows only</span><br></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/zhangblog/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
