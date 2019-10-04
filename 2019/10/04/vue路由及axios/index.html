@@ -66,7 +66,7 @@
               </li>
             
               <li>
-                <a href="https://github.com/<your-github-username>">
+                <a href="https://github.com/qrror2016">
                   
                   Github
                   
@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-10-04</span>
-            <span class="time">15:03:41</span>
+            <span class="time">15:11:05</span>
           </span>
           
         </div>
@@ -141,7 +141,7 @@
 <h3 id="路由守卫"><a href="#路由守卫" class="headerlink" title="路由守卫"></a>路由守卫</h3><p>有些特殊界面需要特定权限才能访问，比如个人信息界面则需要登录后才能访问<br>路由守卫可以简单控制界面访问 话不多说上代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//首先我们要改造一下路由</span><br><span class="line">修改</span><br><span class="line"><span class="built_in">export</span> default new Router</span><br><span class="line">为</span><br><span class="line">const router = new Router</span><br><span class="line">添加方法</span><br><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">    <span class="built_in">let</span> token = localStroage.getItem(<span class="string">"token"</span>);</span><br><span class="line">    //需要权限的界面</span><br><span class="line">    <span class="built_in">let</span> vs = [<span class="string">'/page1'</span>, <span class="string">'/page2'</span>, <span class="string">'/page3'</span>, <span class="string">'/page4'</span>]</span><br><span class="line">    <span class="keyword">if</span> (to.path == <span class="string">'/login'</span>) &#123;</span><br><span class="line">        //进入该组件</span><br><span class="line">        next()</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (vs.indexOf(to.path) &gt;= 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> (token == <span class="string">''</span> || token == null) &#123;</span><br><span class="line">            alert(<span class="string">'请先登录'</span>);</span><br><span class="line">            next(<span class="string">'/login'</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            next()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        next()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">export</span> default router;</span><br></pre></td></tr></table></figure>
 
-<h3 id="vue-axios和路由的基础就介绍到这里啦，小编也是小白一枚-文章可能存在很多理解不全面或者其他问题，欢迎各位大神多多指教"><a href="#vue-axios和路由的基础就介绍到这里啦，小编也是小白一枚-文章可能存在很多理解不全面或者其他问题，欢迎各位大神多多指教" class="headerlink" title="vue axios和路由的基础就介绍到这里啦，小编也是小白一枚 文章可能存在很多理解不全面或者其他问题，欢迎各位大神多多指教"></a>vue axios和路由的基础就介绍到这里啦，小编也是小白一枚 文章可能存在很多理解不全面或者其他问题，欢迎各位大神多多指教</h3>
+<h3 id="vue-axios和路由的基础就介绍到这里啦，小编也是小白一枚-文章可能存在很多理解不全面或者其他问题，欢迎各位大神来吐槽"><a href="#vue-axios和路由的基础就介绍到这里啦，小编也是小白一枚-文章可能存在很多理解不全面或者其他问题，欢迎各位大神来吐槽" class="headerlink" title="vue axios和路由的基础就介绍到这里啦，小编也是小白一枚 文章可能存在很多理解不全面或者其他问题，欢迎各位大神来吐槽"></a>vue axios和路由的基础就介绍到这里啦，小编也是小白一枚 文章可能存在很多理解不全面或者其他问题，欢迎各位大神来吐槽</h3>
         </div>
       </div>
     </div>
