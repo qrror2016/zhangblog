@@ -8,10 +8,10 @@
   <meta name="description" content>
   <meta name="author" content="zhang">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="zhang">
+  <meta property="og:title" content="vue路由及axios">
   <meta property="og:description" content>
   <meta property="og:site_name" content="zhang">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:image" content="http://yoursite.com">
   
     <link rel="alternate" href="/atom.xml" title="zhang" type="application/atom+xml">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Untitled Post</p>
+          <p class="title">vue路由及axios</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,8 +99,8 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-09-25</span>
-            <span class="time">14:59:49</span>
+            <span class="date">2019-10-04</span>
+            <span class="time">15:03:41</span>
           </span>
           
         </div>
@@ -109,7 +109,6 @@
         <!-- Post Main Content -->
         <div class="post-content">
           <hr>
-<p>title: vue路由及axios<br>date: 2019-10-4 17:18:08<br>tags:</p>
 <h3 id="安装axios"><a href="#安装axios" class="headerlink" title="安装axios"></a>安装axios</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios</span><br></pre></td></tr></table></figure>
 
 <h3 id="简单引入axios"><a href="#简单引入axios" class="headerlink" title="简单引入axios"></a>简单引入axios</h3><p>1.可以在单个组件里引入也可以全局引入<br>全局在main.js中引入</p>
@@ -117,17 +116,17 @@
 
 <h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//this.qs.stringify(data)：格式化json数据使数据可以以application/x-www-form-urlencoded方式提交</span><br><span class="line">this.<span class="variable">$http</span></span><br><span class="line">    .post(url, this.qs.stringify(data))</span><br><span class="line">    .<span class="keyword">then</span>(e =&gt; &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;).catch(err =&gt; &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 
-<h3 id="打开浏览器Network验证一下"><a href="#打开浏览器Network验证一下" class="headerlink" title="打开浏览器Network验证一下"></a>打开浏览器Network验证一下</h3><img src="/zhangblog/2019/09/25/vue路由及axios/1.png" title="test">
+<h3 id="打开浏览器Network验证一下"><a href="#打开浏览器Network验证一下" class="headerlink" title="打开浏览器Network验证一下"></a>打开浏览器Network验证一下</h3><img src="/zhangblog/2019/10/04/vue路由及axios/1.png" title="test">
 
 <h3 id="axios携带token"><a href="#axios携带token" class="headerlink" title="axios携带token"></a>axios携带token</h3><p>我们可以稍微改造一下axios在min.js中的引用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> axios.interceptors.request.use(config =&gt; &#123;</span><br><span class="line">    //这里可以设置一下请求的目标网址（配置在这里就不用每次使用axios时都写上接口的全网址，只要写上目标网站的action即可）</span><br><span class="line">    config.baseURL = <span class="string">'url'</span></span><br><span class="line">    //验证token，token可存在LocalStroage里</span><br><span class="line">    <span class="keyword">if</span> (token) &#123;</span><br><span class="line">        //在headers中携带token</span><br><span class="line">        config.headers.Authorization = <span class="string">"Bearer "</span> + token</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> config</span><br><span class="line">&#125;, err =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> err</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>组件中调用axios的方式都是一样的</p>
-<h3 id="Network-验证一下"><a href="#Network-验证一下" class="headerlink" title="Network 验证一下"></a>Network 验证一下</h3><img src="/zhangblog/2019/09/25/vue路由及axios/2.png" title="test">
+<h3 id="Network-验证一下"><a href="#Network-验证一下" class="headerlink" title="Network 验证一下"></a>Network 验证一下</h3><img src="/zhangblog/2019/10/04/vue路由及axios/2.png" title="test">
 
 
 <h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>打开sec/router下的index.js文件</p>
-<img src="/zhangblog/2019/09/25/vue路由及axios/3.png" title="test">
+<img src="/zhangblog/2019/10/04/vue路由及axios/3.png" title="test">
 
 <p>我们也可以懒加载方式引入组件<br>懒加载可以在发布的时候减小包体积<br> 修改代码：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> asyncLoad(view) &#123;</span><br><span class="line">    <span class="built_in">return</span> () =&gt;</span><br><span class="line">        import(<span class="string">'@/view/'</span> + view)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">export</span> default new Router(&#123;</span><br><span class="line">    mode: <span class="string">'history'</span>,</span><br><span class="line">    routes: [&#123;</span><br><span class="line">        path: <span class="string">'/login'</span>,</span><br><span class="line">        name: <span class="string">'login'</span>,</span><br><span class="line">        component: asyncLoad(<span class="string">'login'</span>)</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        path: <span class="string">'/register'</span>,</span><br><span class="line">        name: <span class="string">'register'</span>,</span><br><span class="line">        component: asyncLoad(<span class="string">'register'</span>)</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        path: <span class="string">'/resetPwd'</span>,</span><br><span class="line">        name: <span class="string">'resetPwd'</span>,</span><br><span class="line">        component: asyncLoad(<span class="string">'resetPwd'</span>)</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
