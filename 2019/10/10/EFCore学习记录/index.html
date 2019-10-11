@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-10-10</span>
-            <span class="time">11:23:25</span>
+            <span class="time">17:26:44</span>
           </span>
           
         </div>
@@ -108,7 +108,9 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h3 id="引入相关包"><a href="#引入相关包" class="headerlink" title="引入相关包"></a>引入相关包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Microsoft.EntityFrameworkCore.SqlServer</span><br><span class="line">Microsoft.EntityFrameworkCore.Tools</span><br></pre></td></tr></table></figure>
+          <h3 id="关于EF-Core官方介绍"><a href="#关于EF-Core官方介绍" class="headerlink" title="关于EF Core官方介绍"></a>关于EF Core官方介绍</h3><p>Entity Framework (EF) Core 是轻量化、可扩展、开源和跨平台版的常用 Entity Framework 数据访问技术。<br>EF Core 可用作对象关系映射程序 (O/RM)，以便于 .NET 开发人员能够使用 .NET 对象来处理数据库，这样就不必经常编写大部分数据访问代码了。</p>
+<h3 id="EF-Core-和EF的区别"><a href="#EF-Core-和EF的区别" class="headerlink" title="EF Core 和EF的区别"></a>EF Core 和EF的区别</h3><p>EF Core 是更现代、可扩展的轻量级实体框架版本，与 EF6 的功能和优点非常相似。 EF Core 则完全进行了重写，包含许多 EF6 没有的新功能，但还是缺少 EF6 中最高级的一些映射功能。 只要功能集与需求匹配，建议在新应用程序中使用 EF Core。 </p>
+<h3 id="引入相关包"><a href="#引入相关包" class="headerlink" title="引入相关包"></a>引入相关包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Microsoft.EntityFrameworkCore.SqlServer</span><br><span class="line">Microsoft.EntityFrameworkCore.Tools</span><br></pre></td></tr></table></figure>
 
 <h3 id="最简单的使用方式"><a href="#最简单的使用方式" class="headerlink" title="最简单的使用方式"></a>最简单的使用方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Scaffold-DbContext -Force <span class="string">"Data Source=.; Initial Catalog=databasename; Persist Security Info=True; User ID=sa; Password=123456;"</span> Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/DataModels</span><br><span class="line">执行此命令会自动导入数据库实体模型</span><br></pre></td></tr></table></figure>
 
