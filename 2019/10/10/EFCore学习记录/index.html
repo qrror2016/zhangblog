@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-10-10</span>
-            <span class="time">11:00:04</span>
+            <span class="time">11:23:25</span>
           </span>
           
         </div>
@@ -108,7 +108,48 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          
+          <h3 id="引入相关包"><a href="#引入相关包" class="headerlink" title="引入相关包"></a>引入相关包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Microsoft.EntityFrameworkCore.SqlServer</span><br><span class="line">Microsoft.EntityFrameworkCore.Tools</span><br></pre></td></tr></table></figure>
+
+<h3 id="最简单的使用方式"><a href="#最简单的使用方式" class="headerlink" title="最简单的使用方式"></a>最简单的使用方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Scaffold-DbContext -Force <span class="string">"Data Source=.; Initial Catalog=databasename; Persist Security Info=True; User ID=sa; Password=123456;"</span> Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/DataModels</span><br><span class="line">执行此命令会自动导入数据库实体模型</span><br></pre></td></tr></table></figure>
+
+<h3 id="net-core-注入服务"><a href="#net-core-注入服务" class="headerlink" title=".net core 注入服务"></a>.net core 注入服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">我们可以把数据库连接串写到appsettings.json配置文件中</span><br><span class="line">services.AddDbContext&lt;db_yipetNewContext&gt;(option =&gt; option.UseSqlServer(<span class="string">""</span>));</span><br><span class="line">记得一定要删除 生成实体类文件夹中 ..Context.cs类中的OnConfiguring方法</span><br><span class="line">因为不推荐把连接串写入到代码中</span><br><span class="line"> protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)</span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">if</span> (!optionsBuilder.IsConfigured)</span><br><span class="line">           &#123;</span><br><span class="line">               optionsBuilder.UseSqlServer(<span class="string">"Data Source=.; Initial Catalog=?; Persist Security Info=True; User ID=sa; Password=123;"</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="顺便提一下-net-core的几种注入方式"><a href="#顺便提一下-net-core的几种注入方式" class="headerlink" title="顺便提一下.net core的几种注入方式"></a>顺便提一下.net core的几种注入方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AddTransient：瞬时模式，每次请求，都获取一个新的实例。即使同一个请求获取多次也会是不同的实例</span><br><span class="line">AddScoped：每次请求，都获取一个新的实例。同一个请求获取多次会得到相同的实例</span><br><span class="line">AddSingleton：单例模式，每次都获取同一个实例</span><br></pre></td></tr></table></figure>
+
+<h3 id="EF-core的使用"><a href="#EF-core的使用" class="headerlink" title="EF core的使用"></a>EF core的使用</h3><p>使用方式其实很简单，和EF差不多简单说一下几个常用方法</p>
+<pre><code class="bash">//我们用构造函数注入
+    private db_yipetNewContext yipetNewContext;
+    public Order_dal(db_yipetNewContext yipetNewContext)
+    {
+       this.yipetNewContext = yipetNewContext;
+    }
+    public object <span class="function"><span class="title">test</span></span>(){
+        //linq就不多介绍了想了解详细请访问 https://docs.microsoft.com/zh-cn/dotnet/csharp/linq/index
+        ...
+        //FromSql,3.0版本之后FromSqlRaw替代了FromSql
+        var parameters = new SqlParameter[] {
+               new SqlParameter(<span class="string">"pageindex"</span>,1),
+               new SqlParameter(<span class="string">"pagesize"</span>,10),
+               new SqlParameter(<span class="string">"mid"</span>,<span class="string">""</span>)
+        };
+        var data = yipetNewContext.ZOrder.FromSqlRaw(@<span class="string">"select * from </span>
+<span class="string">                      (select row_number() over(order by ORDER_DATE) as inx,* from z_order) a </span>
+<span class="string">                       where a.inx between (@pageindex-1)*@pagesize </span>
+<span class="string">                       and @pageindex*@pagesize"</span>, parameters).ToList();
+        //FromSqlRaw可以配合linq使用
+         var data = yipetNewContext.ZOrder.FromSqlRaw(<span class="string">"select * from ZOrder"</span>).<span class="built_in">where</span>(s=&gt;s.B_MEMBER_ID==<span class="string">"000001"</span>).Take(10).ToList();
+        //ExecuteSqlCommand
+        //利用ExecuteSqlCommand我们可以执行增删改等操作
+        SqlParameter[] parameters1 = new []{
+            new SqlParameter(<span class="string">"MemberID"</span>, <span class="string">"0000001"</span>),
+            new SqlParameter(<span class="string">"UserName"</span>, <span class="string">"lili"</span>)
+        };
+        context.Database.ExecuteSqlCommand(<span class="string">"update User set Name=@UserName where Id=@MemberID"</span>, parameters1);
+
+    }
+
+</code></pre>
+<h3 id="未待完续…"><a href="#未待完续…" class="headerlink" title="未待完续…"></a>未待完续…</h3>
         </div>
       </div>
     </div>
