@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="zhang">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Apache反向代理iis">
+  <meta property="og:title" content="Apache反向代理IIS">
   <meta property="og:description" content>
   <meta property="og:site_name" content="zhang">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Apache反向代理iis</p>
+          <p class="title">Apache反向代理IIS</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-11-11</span>
-            <span class="time">16:43:39</span>
+            <span class="time">17:21:37</span>
           </span>
           
         </div>
@@ -128,6 +128,14 @@
 
 <h3 id="验证一下"><a href="#验证一下" class="headerlink" title="验证一下"></a>验证一下</h3> <img src="/zhangblog/2019/11/11/Apache反向代理iis/6.png" title="test">
 
+
+<h3 id="代理两个网站"><a href="#代理两个网站" class="headerlink" title="代理两个网站"></a>代理两个网站</h3><p> 1.首先我们在windows的 host文件中添加两个自定义域名（本地访问的可以随便写）<br> host文件地址 C:\WINDOWS\system32\drivers\etc\hosts<br> 例：<br>  <img src="/zhangblog/2019/11/11/Apache反向代理iis/7.png" title="test"></p>
+<p> 2.修改httpd.conf文件<br> 例：<br> <img src="/zhangblog/2019/11/11/Apache反向代理iis/8.png" title="test"></p>
+<h3 id="最后测试一下"><a href="#最后测试一下" class="headerlink" title="最后测试一下"></a>最后测试一下</h3><p>  <a href="http://www.test1.com" target="_blank" rel="noopener">www.test1.com</a></p>
+  <img src="/zhangblog/2019/11/11/Apache反向代理iis/9.png" title="test">
+
+<p>  <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a></p>
+ <img src="/zhangblog/2019/11/11/Apache反向代理iis/10.png" title="test">
 
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p> 如果你的服务器有两个网站同时存在Apache和iis那么此方式可以解决80端口占用的问题<br> 其实iis也是可以代理Apache的 具体内容下章介绍</p>
 
