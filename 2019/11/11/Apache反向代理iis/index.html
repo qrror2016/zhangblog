@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="zhang">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Apache反向代理iis">
+  <meta property="og:description" content>
+  <meta property="og:site_name" content="zhang">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="zhang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>zhang</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/zhangblog/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/zhangblog/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/zhangblog//img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Apache反向代理iis</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/zhangblog/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/zhangblog/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/qrror2016">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By zhang</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-11-11</span>
+            <span class="time">16:43:39</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><p>Apache是一款Web服务器软件类似于iis，nginx 详细自己百度</p>
+<h3 id="下载安装Apache"><a href="#下载安装Apache" class="headerlink" title="下载安装Apache"></a>下载安装Apache</h3><p> 官方网站 <a href="http://www.apache.org/" target="_blank" rel="noopener">http://www.apache.org/</a><br> 下载完成后大概是这个样子的<br> <img src="/zhangblog/2019/11/11/Apache反向代理iis/1.png" title="test"><br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">安装Apache服务（cmd命令找到Apache bin目录执行命令）</span><br><span class="line">httpd -k install</span><br></pre></td></tr></table></figure></p>
+<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><p> 错误1： 安装时报错：拒绝访问<br> 解决方法：用管理员身份打开cmd命令窗口<br> 错误2：<br>  <img src="/zhangblog/2019/11/11/Apache反向代理iis/2.png" title="test"><br> 解决方法：打开conf目录下的httpd.conf 修改 Define SRVROOT为当前目录路径<br>例如：</p>
+<img src="/zhangblog/2019/11/11/Apache反向代理iis/3.png" title="test">
+
+<h3 id="Apache常用命令"><a href="#Apache常用命令" class="headerlink" title="Apache常用命令"></a>Apache常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">httpd -k install 安装</span><br><span class="line">httpd -k uninstall 卸载</span><br><span class="line">httpd -k start 启动</span><br><span class="line">httpd -k stop 关闭</span><br><span class="line">httpd -k restart 重启</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改Apache默认端口"><a href="#修改Apache默认端口" class="headerlink" title="修改Apache默认端口"></a>修改Apache默认端口</h3><p> 1.打开 httpd.conf 找到Listen 修改为80（一般默认为80端口）<br> 2.修改完成之后重启服务（httpd -k restart）验证一下本地访问 <a href="http://localhost/" target="_blank" rel="noopener">http://localhost/</a></p>
+<h3 id="打开iis部署一个网站（iis默认有一个网站把端口改成81就行了）"><a href="#打开iis部署一个网站（iis默认有一个网站把端口改成81就行了）" class="headerlink" title="打开iis部署一个网站（iis默认有一个网站把端口改成81就行了）"></a>打开iis部署一个网站（iis默认有一个网站把端口改成81就行了）</h3><p> 例：<br> <img src="/zhangblog/2019/11/11/Apache反向代理iis/5.png" title="test"></p>
+<p> 启动验证一下</p>
+ <img src="/zhangblog/2019/11/11/Apache反向代理iis/4.png" title="test">
+
+
+<h3 id="现在我们回到Apache-打开httpd-conf配置文件添加或者取消注释以下项"><a href="#现在我们回到Apache-打开httpd-conf配置文件添加或者取消注释以下项" class="headerlink" title="现在我们回到Apache 打开httpd.conf配置文件添加或者取消注释以下项"></a>现在我们回到Apache 打开httpd.conf配置文件添加或者取消注释以下项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LoadModule proxy_module modules/mod_proxy.so</span><br><span class="line">LoadModule proxy_connect_module modules/mod_proxy_connect.so</span><br><span class="line">LoadModule proxy_http_module modules/mod_proxy_http.so</span><br><span class="line">LoadModule proxy_ftp_module modules/mod_proxy_ftp.so</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置代理-httpd-conf"><a href="#配置代理-httpd-conf" class="headerlink" title="配置代理(httpd.conf)"></a>配置代理(httpd.conf)</h3><p>1.如果出现502错误把下面注释的代码取消掉试一下（网上很多人出现这个错误但是我没有遇到过）<br>2.ProxyPass和ProxyPassReverse写本机ip加端口不要写<a href="http://localhost加端口" target="_blank" rel="noopener">http://localhost加端口</a> 否则本地css,js资源无法加载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;VIRTUALHOST *:80&gt;</span><br><span class="line">    ServerName <span class="built_in">test</span></span><br><span class="line">    ProxyPass / http://**/</span><br><span class="line">    ProxyPassReverse / http://**/</span><br><span class="line">    ProxyRequests Off</span><br><span class="line"><span class="comment">#    SetEnv force-proxy-request- 1.0.1     </span></span><br><span class="line"><span class="comment">#    SetEnv proxy-nokeepalive  1    </span></span><br><span class="line">&lt;/VIRTUALHOST&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证一下"><a href="#验证一下" class="headerlink" title="验证一下"></a>验证一下</h3> <img src="/zhangblog/2019/11/11/Apache反向代理iis/6.png" title="test">
+
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p> 如果你的服务器有两个网站同时存在Apache和iis那么此方式可以解决80端口占用的问题<br> 其实iis也是可以代理Apache的 具体内容下章介绍</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/zhangblog/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
